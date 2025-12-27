@@ -39,7 +39,7 @@ npm run preview
 
 This site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
 
-**Live site**: [https://jamesmontemagno.github.io/meissner-website/](https://jamesmontemagno.github.io/meissner-website/)
+**Live site**: [https://meissnernordic.app](https://meissnernordic.app)
 
 ## 🔗 Links
 

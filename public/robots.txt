@@ -1,8 +1,8 @@
 # Robots.txt for Meissner Nordic Website
-# https://jamesmontemagno.github.io/meissner-website/
+# https://meissnernordic.app
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jamesmontemagno.github.io/meissner-website/sitemap.xml
+Sitemap: https://meissnernordic.app/sitemap.xml
