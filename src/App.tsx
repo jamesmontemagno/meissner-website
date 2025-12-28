@@ -352,7 +352,7 @@ function App() {
                    className="transform hover:scale-105 transition-transform duration-300">
                   <AppStoreBadge />
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.refractored.mycadence" 
+                <a href="https://play.google.com/store/apps/details?id=com.refractored.meissner" 
                    className="transform hover:scale-105 transition-transform duration-300">
                   <GooglePlayBadge />
                 </a>
