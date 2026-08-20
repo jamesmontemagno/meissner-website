@@ -15,7 +15,7 @@ Meissner Nordic provides real-time information for Nordic skiers:
 ## 📱 Download
 
 - **iOS**: [App Store](https://apps.apple.com/us/app/meissner-nordic/id1601048636)
-- **Android**: [Google Play](https://play.google.com/store/apps/details?id=com.refractored.mycadence)
+- **Android**: [Google Play](https://play.google.com/store/apps/details?id=com.refractored.meissner)
 
 ## 🛠️ Development
 

@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import './index.css'
 
 // Screenshot rotation hook
+const screenshots = [
+  './assets/grooming_updates.PNG',
+  './assets/maps.PNG',
+  './assets/weather_webcams.PNG',
+  './assets/news.PNG',
+]
+
 const useScreenshotRotation = () => {
-  const screenshots = [
-    './assets/grooming_updates.PNG',
-    './assets/maps.PNG',
-    './assets/weather_webcams.PNG',
-    './assets/news.PNG',
-  ]
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const useScreenshotRotation = () => {
     return () => clearInterval(interval)
   }, [])
 
-  return screenshots[currentIndex]
+  return currentIndex
 }
 
 // SVG Icons as components
@@ -142,8 +143,9 @@ function App() {
             <img src="./assets/iTunesArtwork@3x.png" alt="Meissner Nordic App Icon" className="w-10 h-10 rounded-xl" />
             <span className="text-xl font-bold">Meissner Nordic</span>
           </div>
-          <a href="#download" className="hidden md:block bg-white/10 hover:bg-white/20 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium transition-all duration-300">
-            Download App
+          <a href="#download" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 md:px-5 rounded-full text-sm font-medium transition-all duration-300">
+            <span className="md:hidden">Download</span>
+            <span className="hidden md:inline">Download App</span>
           </a>
         </div>
       </nav>
@@ -167,12 +169,12 @@ function App() {
             </p>
 
             {/* App Store Badges */}
-            <div id="download" className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-6">
-              <a href="https://apps.apple.com/us/app/meissner-nordic/id1601048636" 
+            <div id="download" className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start mb-6">
+              <a href="https://apps.apple.com/us/app/meissner-nordic/id1601048636" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store"
                  className="transform hover:scale-105 transition-transform duration-300">
                 <AppStoreBadge />
               </a>
-              <a href="https://play.google.com/store/apps/details?id=com.refractored.meissner" 
+              <a href="https://play.google.com/store/apps/details?id=com.refractored.meissner" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play"
                  className="transform hover:scale-105 transition-transform duration-300">
                 <GooglePlayBadge />
               </a>
@@ -198,14 +200,14 @@ function App() {
           </div>
 
           {/* Right Content - App Preview */}
-          <div className="relative flex justify-center lg:justify-end overflow-visible">
+          <div className="relative flex justify-center lg:justify-end lg:pr-32 mt-8 lg:mt-0">
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-sky-500/30 to-cyan-500/30 blur-3xl rounded-full scale-75"></div>
             
             {/* Phone mockup */}
             <div className="relative">
               {/* Left floating cards */}
-              <div className="absolute -left-32 top-8 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow z-20">
+              <div className="hidden md:block absolute md:-left-24 lg:-left-32 top-8 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-green-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-green-400 text-xs">✓</span>
@@ -214,7 +216,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="absolute -left-28 top-36 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-700 z-20">
+              <div className="hidden md:block absolute md:-left-20 lg:-left-28 top-36 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-700 z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-amber-400 text-xs">📰</span>
@@ -223,7 +225,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="absolute -left-24 bottom-20 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-300 z-20">
+              <div className="hidden md:block absolute md:-left-16 lg:-left-24 bottom-20 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-300 z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-purple-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-purple-400 text-xs">📅</span>
@@ -234,19 +236,23 @@ function App() {
 
               {/* Phone */}
               <div className="w-56 md:w-64 bg-gradient-to-b from-slate-700 to-slate-800 rounded-[2.5rem] p-2 shadow-2xl shadow-sky-500/20 relative z-10">
-                <div className="bg-black rounded-[2rem] overflow-hidden aspect-[9/19.5]">
-                  <img 
-                    src={currentScreenshot} 
-                    alt="Meissner Nordic app showing trail grooming reports, weather conditions, and interactive maps for cross-country skiing" 
-                    className="w-full h-full object-cover transition-opacity duration-500"
-                  />
+                <div className="bg-black rounded-[2rem] overflow-hidden aspect-[9/19.5] relative">
+                  {screenshots.map((src, i) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={i === currentScreenshot ? 'Meissner Nordic app showing trail grooming reports, weather conditions, and interactive maps for cross-country skiing' : ''}
+                      aria-hidden={i !== currentScreenshot}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${i === currentScreenshot ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  ))}
                 </div>
                 {/* Phone notch */}
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full"></div>
               </div>
               
               {/* Right floating cards */}
-              <div className="absolute -right-32 top-12 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-500 z-20">
+              <div className="hidden md:block absolute md:-right-24 lg:-right-32 top-12 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-500 z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-sky-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-sky-400 text-xs">❄️</span>
@@ -255,7 +261,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="absolute -right-28 top-40 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-200 z-20">
+              <div className="hidden md:block absolute md:-right-20 lg:-right-28 top-40 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-200 z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-rose-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-rose-400 text-xs">📍</span>
@@ -264,7 +270,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="absolute -right-24 bottom-24 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-1000 z-20">
+              <div className="hidden md:block absolute md:-right-16 lg:-right-24 bottom-24 bg-white/10 backdrop-blur-md rounded-xl p-2.5 shadow-lg animate-bounce-slow delay-1000 z-20">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 bg-cyan-500/20 rounded-lg flex items-center justify-center">
                     <span className="text-cyan-400 text-xs">📷</span>
@@ -347,12 +353,12 @@ function App() {
                 Download Meissner Nordic today and never miss perfect skiing conditions again.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://apps.apple.com/us/app/meissner-nordic/id1601048636" 
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <a href="https://apps.apple.com/us/app/meissner-nordic/id1601048636" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store"
                    className="transform hover:scale-105 transition-transform duration-300">
                   <AppStoreBadge />
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=com.refractored.meissner" 
+                <a href="https://play.google.com/store/apps/details?id=com.refractored.meissner" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play"
                    className="transform hover:scale-105 transition-transform duration-300">
                   <GooglePlayBadge />
                 </a>
