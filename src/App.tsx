@@ -60,7 +60,7 @@ const DevicesIcon = () => (
 )
 
 const appStoreUrl = 'https://apps.apple.com/us/app/meissner-nordic/id1601048636'
-const storeBadgeBaseUrl = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}assets/store-badges/`
+const storeBadgeBaseUrl = `${import.meta.env.BASE_URL}assets/store-badges/`
 
 const storeDownloads = [
   {
