@@ -60,27 +60,28 @@ const DevicesIcon = () => (
 )
 
 const appStoreUrl = 'https://apps.apple.com/us/app/meissner-nordic/id1601048636'
+const storeBadgeBaseUrl = `${import.meta.env.BASE_URL}assets/store-badges/`
 
 const storeDownloads = [
   {
     platform: 'iPhone & iPad',
     url: appStoreUrl,
-    badge: './assets/store-badges/app-store.svg',
+    badge: `${storeBadgeBaseUrl}app-store.svg`,
   },
   {
     platform: 'Mac',
     url: appStoreUrl,
-    badge: './assets/store-badges/mac-app-store.svg',
+    badge: `${storeBadgeBaseUrl}mac-app-store.svg`,
   },
   {
     platform: 'Android',
     url: 'https://play.google.com/store/apps/details?id=com.refractored.meissner',
-    badge: './assets/store-badges/google-play.svg',
+    badge: `${storeBadgeBaseUrl}google-play.svg`,
   },
   {
     platform: 'Windows',
     url: 'https://apps.microsoft.com/detail/9NKDQR4KJPTN',
-    badge: './assets/store-badges/microsoft-store.svg',
+    badge: `${storeBadgeBaseUrl}microsoft-store.svg`,
   },
 ]
 
