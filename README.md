@@ -1,6 +1,6 @@
 # Meissner Nordic Website
 
-Marketing landing page for the **Meissner Nordic** mobile app - your companion for the Meissner Nordic Ski Area in Bend, Oregon.
+Marketing landing page for the **Meissner Nordic** app - your companion for the Meissner Nordic Ski Area in Bend, Oregon, available on mobile and desktop.
 
 ## 🎿 About the App
 
@@ -14,8 +14,10 @@ Meissner Nordic provides real-time information for Nordic skiers:
 
 ## 📱 Download
 
-- **iOS**: [App Store](https://apps.apple.com/us/app/meissner-nordic/id1601048636)
+- **iPhone & iPad**: [App Store](https://apps.apple.com/us/app/meissner-nordic/id1601048636)
+- **Mac**: [Mac App Store](https://apps.apple.com/us/app/meissner-nordic/id1601048636) (same link as iPhone & iPad)
 - **Android**: [Google Play](https://play.google.com/store/apps/details?id=com.refractored.meissner)
+- **Windows**: [Microsoft Store](https://apps.microsoft.com/detail/9NKDQR4KJPTN)
 
 ## 🛠️ Development
 
