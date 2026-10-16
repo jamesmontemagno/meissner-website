@@ -66,32 +66,28 @@ const storeDownloads = [
     platform: 'iPhone & iPad',
     url: appStoreUrl,
     badge: './assets/store-badges/app-store.svg',
-    alt: 'Download on the App Store',
   },
   {
     platform: 'Mac',
     url: appStoreUrl,
     badge: './assets/store-badges/mac-app-store.svg',
-    alt: 'Download on the Mac App Store',
   },
   {
     platform: 'Android',
     url: 'https://play.google.com/store/apps/details?id=com.refractored.meissner',
     badge: './assets/store-badges/google-play.svg',
-    alt: 'Get it on Google Play',
   },
   {
     platform: 'Windows',
     url: 'https://apps.microsoft.com/detail/9NKDQR4KJPTN',
     badge: './assets/store-badges/microsoft-store.svg',
-    alt: 'Get it from Microsoft',
   },
 ]
 
 function StoreBadges({ className = '' }: { className?: string }) {
   return (
     <div className={`grid grid-cols-2 gap-x-3 gap-y-4 ${className}`}>
-      {storeDownloads.map(({ platform, url, badge, alt }) => (
+      {storeDownloads.map(({ platform, url, badge }) => (
         <a
           key={platform}
           href={url}
@@ -102,7 +98,7 @@ function StoreBadges({ className = '' }: { className?: string }) {
         >
           <img
             src={badge}
-            alt={alt}
+            alt=""
             className="h-9 max-w-full w-auto transition-transform duration-300 group-hover:scale-105 sm:h-10"
           />
           <span className="text-xs text-slate-300">{platform}</span>
