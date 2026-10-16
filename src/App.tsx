@@ -59,16 +59,18 @@ const DevicesIcon = () => (
   </svg>
 )
 
+const appStoreUrl = 'https://apps.apple.com/us/app/meissner-nordic/id1601048636'
+
 const storeDownloads = [
   {
     platform: 'iPhone & iPad',
-    url: 'https://apps.apple.com/us/app/meissner-nordic/id1601048636',
+    url: appStoreUrl,
     badge: './assets/store-badges/app-store.svg',
     alt: 'Download on the App Store',
   },
   {
     platform: 'Mac',
-    url: 'https://apps.apple.com/us/app/meissner-nordic/id1601048636',
+    url: appStoreUrl,
     badge: './assets/store-badges/mac-app-store.svg',
     alt: 'Download on the Mac App Store',
   },
