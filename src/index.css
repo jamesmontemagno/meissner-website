@@ -121,6 +121,111 @@
   background: #64748b;
 }
 
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal .reveal-item,
+.reveal .reveal-art {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible .reveal-item,
+.reveal.is-visible .reveal-art {
+  opacity: 1;
+  transform: none;
+}
+.reveal.is-visible .reveal-item:nth-child(2) { transition-delay: 100ms; }
+.reveal.is-visible .reveal-item:nth-child(3) { transition-delay: 200ms; }
+.reveal.is-visible .reveal-item:nth-child(4) { transition-delay: 300ms; }
+.reveal.is-visible .reveal-item:nth-child(5) { transition-delay: 400ms; }
+.reveal.is-visible .reveal-art { transition-delay: 250ms; }
+
+.swimlane {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.swimlane:hover {
+  border-color: rgb(255 255 255 / 0.18);
+  box-shadow: 0 30px 80px -40px rgb(14 165 233 / 0.45);
+}
+
+/* Community feed */
+@keyframes feed-in {
+  from { opacity: 0; transform: translateY(-14px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.feed-item { animation: feed-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes drift {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(160px) rotate(180deg); opacity: 0; }
+}
+.drift-flake { animation: drift 7s linear infinite; }
+
+/* Outings journal */
+.tilt-card {
+  transform: rotate(-2deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.tilt-card:hover { transform: rotate(0deg) translateY(-6px) scale(1.02); }
+
+.trail-path { stroke-dasharray: 260; stroke-dashoffset: 260; }
+.trail-dot { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.art-active .trail-path { animation: draw-trail 2s 0.4s ease-out forwards; }
+.art-active .trail-dot { animation: pop-in 0.4s 2.3s ease-out forwards, dot-pulse 2s 2.7s ease-in-out infinite; }
+@keyframes draw-trail { to { stroke-dashoffset: 0; } }
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes dot-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+.star-btn { opacity: 0; }
+.art-active .star-btn { animation: pop-in 0.35s ease-out both; }
+
+.season-day { opacity: 0; transform: scale(0.4); }
+.art-active .season-day { animation: pop-in 0.35s ease-out both; }
+
+.sun-glow { animation: sun-glow 4s ease-in-out infinite; box-shadow: 0 0 16px 4px rgb(252 211 77 / 0.6); }
+@keyframes sun-glow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.art-active .lock-badge { animation: lock-shine 3s 2.5s ease-in-out infinite; }
+@keyframes lock-shine {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(45 212 191 / 0); }
+  50% { box-shadow: 0 0 0 4px rgb(45 212 191 / 0.15); }
+}
+
+.heartbeat { animation: heartbeat 1.6s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%, 40%, 100% { transform: scale(1); }
+  20% { transform: scale(1.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal .reveal-item, .reveal .reveal-art { opacity: 1; transform: none; }
+  .trail-path { stroke-dashoffset: 0; }
+  .trail-dot, .star-btn, .season-day { opacity: 1; transform: none; }
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;

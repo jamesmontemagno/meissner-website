@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './index.css'
 
 // Screenshot rotation hook
@@ -139,6 +139,9 @@ function App() {
           <div className="flex items-center gap-3">
             <img src="./assets/iTunesArtwork@3x.png" alt="Meissner Nordic App Icon" className="w-10 h-10 rounded-xl" />
             <span className="text-xl font-bold">Meissner Nordic</span>
+            <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-sky-400/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-sky-200 ring-1 ring-sky-300/30">
+              <span aria-hidden="true">✓</span> Official App
+            </span>
           </div>
           <a href="#download" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2 md:px-5 rounded-full text-sm font-medium transition-all duration-300">
             <span className="md:hidden">Download</span>
@@ -154,7 +157,7 @@ function App() {
           <div className="text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-sky-500/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sky-300 text-sm mb-4">
               <span className="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></span>
-              Real-time grooming updates
+              The Official Meissner Nordic App
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-4">
@@ -272,6 +275,58 @@ function App() {
         </div>
       </header>
 
+      {/* New feature swimlanes */}
+      <section aria-label="New this season" className="relative z-10 pb-16 md:pb-24">
+        <div className="container mx-auto px-6">
+          <Reveal className="mb-10 text-center md:mb-14">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sky-200 ring-1 ring-white/10">
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-300 animate-pulse" />
+              New this season
+            </span>
+          </Reveal>
+
+          <div className="space-y-8 md:space-y-12">
+            <Reveal className="swimlane group/lane relative grid items-center gap-8 overflow-hidden rounded-3xl border border-sky-300/10 bg-slate-800/60 p-6 md:p-10 lg:grid-cols-2 lg:gap-16 lg:p-14">
+              <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
+              <div className="relative max-w-xl">
+                <p className="reveal-item mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Better together</p>
+                <h2 className="reveal-item mb-4 text-3xl font-bold md:text-4xl">Community Updates</h2>
+                <p className="reveal-item text-lg leading-relaxed text-slate-300">
+                  Good snow is better shared. Post an anonymous snapshot of trail conditions and see what fellow skiers are finding out there.
+                </p>
+                <ul className="reveal-item mt-6 space-y-2 text-slate-300">
+                  <li className="flex items-center gap-3"><span className="text-sky-300">✓</span> Share conditions in a couple of taps</li>
+                  <li className="flex items-center gap-3"><span className="text-sky-300">✓</span> Anonymous, no account needed</li>
+                  <li className="flex items-center gap-3"><span className="text-sky-300">✓</span> See the latest reports before you drive up</li>
+                </ul>
+                <p className="reveal-item mt-6 text-sm font-medium text-sky-300">Try it → tap a condition to share it.</p>
+              </div>
+              <CommunityIllustration />
+            </Reveal>
+
+            <Reveal className="swimlane group/lane relative grid items-center gap-8 overflow-hidden rounded-3xl border border-teal-300/10 bg-slate-800/60 p-6 md:p-10 lg:grid-cols-2 lg:gap-16 lg:p-14">
+              <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />
+              <div className="relative max-w-xl lg:order-2">
+                <p className="reveal-item mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">Your days, your memories</p>
+                <h2 className="reveal-item mb-4 text-3xl font-bold md:text-4xl">Log your outings</h2>
+                <p className="reveal-item text-lg leading-relaxed text-slate-300">
+                  Remember the trails, the snow, and the little moments. Rate the day, add notes and distance, and watch your season come together.
+                </p>
+                <ul className="reveal-item mt-6 space-y-2 text-slate-300">
+                  <li className="flex items-center gap-3"><span className="text-teal-300">✓</span> Pick your trails and conditions</li>
+                  <li className="flex items-center gap-3"><span className="text-teal-300">✓</span> Season stats and a calendar view</li>
+                  <li className="flex items-center gap-3"><span className="text-teal-300">✓</span> No account, no cloud. It never leaves your device.</li>
+                </ul>
+                <p className="reveal-item mt-6 inline-flex items-center gap-2 rounded-full bg-teal-400/10 px-3 py-1.5 text-sm font-medium text-teal-200 ring-1 ring-teal-300/20">
+                  <LockIcon className="h-4 w-4" /> Private &amp; local
+                </p>
+              </div>
+              <OutingsIllustration />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="relative z-10 py-24 bg-gradient-to-b from-slate-800/50 to-transparent">
         <div className="container mx-auto px-6">
@@ -365,8 +420,277 @@ function App() {
               <a href="https://meissnernordic.org" className="hover:text-white transition-colors">Meissner Nordic Club</a>
             </div>
           </div>
+          <p className="mt-8 text-center text-xs text-slate-500">
+            Locally made in Central Oregon · Made with <span className="heartbeat inline-block text-rose-400" aria-label="love">❤️</span> in Bend, OR
+          </p>
         </div>
       </footer>
+    </div>
+  )
+}
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+function useInView<T extends Element>(threshold = 0.2) {
+  const ref = useRef<T>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true)
+        observer.disconnect()
+      }
+    }, { threshold })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return [ref, inView] as const
+}
+
+function useCountUp(target: number, active: boolean, duration = 1400) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    if (!active) return
+    if (prefersReducedMotion()) {
+      const id = requestAnimationFrame(() => setValue(target))
+      return () => cancelAnimationFrame(id)
+    }
+    let frame = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1)
+      setValue(target * (1 - Math.pow(1 - progress, 3)))
+      if (progress < 1) frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [target, active, duration])
+
+  return value
+}
+
+function Reveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const [ref, inView] = useInView<HTMLDivElement>(0.15)
+  return (
+    <div ref={ref} className={`reveal ${inView ? 'is-visible' : ''} ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+const LockIcon = ({ className = 'h-5 w-5' }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11V8a5 5 0 0110 0v3M6 11h12v9H6z" />
+  </svg>
+)
+
+const conditionOptions = [
+  { emoji: '❄️', label: 'Fresh snow', tone: 'bg-sky-400/15 text-sky-100 ring-sky-300/30' },
+  { emoji: '⚡', label: 'Fast & firm', tone: 'bg-amber-400/15 text-amber-100 ring-amber-300/30' },
+  { emoji: '🧊', label: 'Icy patches', tone: 'bg-cyan-400/15 text-cyan-100 ring-cyan-300/30' },
+  { emoji: '🌤️', label: 'Bluebird day', tone: 'bg-teal-400/15 text-teal-100 ring-teal-300/30' },
+]
+
+const sampleReports = [
+  { option: 0, note: 'Soft corduroy on the lower loops', ago: '4m ago' },
+  { option: 3, note: 'Sunny and calm at the shelter', ago: '12m ago' },
+  { option: 1, note: 'Skating is quick this morning', ago: '25m ago' },
+  { option: 2, note: 'Watch the shady downhill corners', ago: '41m ago' },
+]
+
+interface Report {
+  id: number
+  option: number
+  note: string
+  who: string
+  ago: string
+}
+
+function CommunityIllustration() {
+  const [ref, inView] = useInView<HTMLDivElement>(0.3)
+  const nextId = useRef(3)
+  const sampleIndex = useRef(3)
+  const [justShared, setJustShared] = useState(false)
+  const [reports, setReports] = useState<Report[]>(() =>
+    sampleReports.slice(0, 3).map((r, i) => ({ ...r, id: i, who: 'Anonymous skier' })),
+  )
+
+  useEffect(() => {
+    if (!inView || prefersReducedMotion()) return
+    const interval = setInterval(() => {
+      const sample = sampleReports[sampleIndex.current % sampleReports.length]
+      sampleIndex.current += 1
+      setReports((prev) => [{ ...sample, id: nextId.current++, who: 'Anonymous skier', ago: 'just now' }, ...prev].slice(0, 3))
+    }, 3600)
+    return () => clearInterval(interval)
+  }, [inView])
+
+  useEffect(() => {
+    if (!justShared) return
+    const timeout = setTimeout(() => setJustShared(false), 2000)
+    return () => clearTimeout(timeout)
+  }, [justShared])
+
+  const share = (option: number) => {
+    setReports((prev) => [{ id: nextId.current++, option, note: 'Thanks for sharing!', who: 'You', ago: 'just now' }, ...prev].slice(0, 3))
+    setJustShared(true)
+  }
+
+  return (
+    <div ref={ref} className="reveal-art relative overflow-hidden rounded-2xl bg-gradient-to-br from-sky-950 via-slate-900 to-slate-900 p-5 ring-1 ring-white/5 sm:p-7">
+      <svg aria-hidden="true" viewBox="0 0 440 140" className="pointer-events-none absolute inset-x-0 bottom-0 w-full opacity-60" preserveAspectRatio="none">
+        <path d="M0 140V96l70-48 46 30 74-62 86 70 52-32 112 76Z" fill="#12344a" />
+        <path d="M0 140v-26c90-24 150-6 220 4 90 12 150-18 220-6v28Z" fill="#183f55" />
+      </svg>
+      <span aria-hidden="true" className="drift-flake absolute left-[12%] top-6 text-xs text-sky-200/40">❄</span>
+      <span aria-hidden="true" className="drift-flake absolute left-[70%] top-10 text-[10px] text-sky-200/30 [animation-delay:2s]">❄</span>
+      <span aria-hidden="true" className="drift-flake absolute left-[45%] top-3 text-[8px] text-sky-200/30 [animation-delay:4s]">❄</span>
+
+      <div className="relative">
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm font-semibold text-white">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+            </span>
+            Community conditions
+          </div>
+          <span className="text-xs text-slate-400">Live from the trails</span>
+        </div>
+
+        <ul className="relative min-h-[15.5rem] space-y-3" aria-live="polite">
+          {reports.map((report, i) => {
+            const option = conditionOptions[report.option]
+            return (
+              <li
+                key={report.id}
+                className={`feed-item flex items-start gap-3 rounded-xl p-3 ring-1 backdrop-blur-sm transition-all duration-500 ${i === 0 ? '' : 'opacity-80'} ${report.who === 'You' ? 'bg-sky-400/15 ring-sky-300/50' : 'bg-white/[0.07] ring-white/10'}`}
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg">{option.emoji}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring-1 ${option.tone}`}>{option.label}</span>
+                    <span className="shrink-0 text-[11px] text-slate-400">{report.ago}</span>
+                  </div>
+                  <p className="mt-1 truncate text-sm text-slate-200">{report.note}</p>
+                  <p className="text-[11px] text-slate-500">{report.who}</p>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+
+        <div className="mt-5 rounded-xl bg-slate-950/50 p-3 ring-1 ring-white/10 backdrop-blur">
+          <div className="mb-2 flex items-center justify-between text-xs text-slate-400">
+            <span>How’s the snow?</span>
+            <span className={`font-medium text-emerald-300 transition-opacity duration-300 ${justShared ? 'opacity-100' : 'opacity-0'}`}>Shared anonymously ✓</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {conditionOptions.map((option, i) => (
+              <button
+                key={option.label}
+                type="button"
+                onClick={() => share(i)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold ring-1 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 ${option.tone}`}
+              >
+                <span aria-hidden="true">{option.emoji}</span> {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const seasonDays = [1, 4, 5, 9, 11, 12, 15, 18, 22, 23, 25, 29, 31, 33]
+
+function OutingsIllustration() {
+  const [ref, inView] = useInView<HTMLDivElement>(0.3)
+  const [rating, setRating] = useState(5)
+  const [hoverRating, setHoverRating] = useState(0)
+  const distance = useCountUp(12.4, inView)
+  const outings = useCountUp(14, inView)
+  const shownRating = hoverRating || rating
+
+  return (
+    <div ref={ref} className={`reveal-art relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-950 via-slate-900 to-slate-900 p-5 ring-1 ring-white/5 sm:p-7 ${inView ? 'art-active' : ''}`}>
+      <div className="relative grid gap-4 sm:grid-cols-[1.3fr_1fr]">
+        <div className="tilt-card rounded-2xl bg-[#eef6f2] p-4 text-slate-800 shadow-2xl shadow-teal-950/50">
+          <div className="relative mb-3 h-28 overflow-hidden rounded-xl bg-gradient-to-b from-[#c9e8e0] to-[#a9d4ca]">
+            <span aria-hidden="true" className="sun-glow absolute right-4 top-3 h-6 w-6 rounded-full bg-amber-300" />
+            <svg aria-hidden="true" viewBox="0 0 220 112" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
+              <path d="M0 112V70l42-34 30 22 40-38 46 40 30-18 32 26v44Z" fill="#6aa59f" />
+              <path d="M0 112V86l52-22 40 18 44-22 44 20 40-10v42Z" fill="#3c7f7b" />
+              <path className="trail-path" d="M14 100c22-8 30-26 52-22s22 18 44 14 24-26 48-24 22 16 48 10" stroke="#fff" strokeWidth="3" strokeLinecap="round" fill="none" />
+              <circle className="trail-dot" cx="206" cy="78" r="5" fill="#f59e0b" stroke="#fff" strokeWidth="2" />
+            </svg>
+          </div>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-bold text-slate-900">Saturday morning skate</p>
+              <p className="text-xs text-slate-500">Tangent Loop · Ponderosa</p>
+            </div>
+            <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[11px] font-semibold text-teal-800">❄️ Fresh</span>
+          </div>
+          <div className="mt-3 flex items-center gap-1" role="radiogroup" aria-label="Rate this outing" onMouseLeave={() => setHoverRating(0)}>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                type="button"
+                role="radio"
+                aria-checked={rating === star}
+                aria-label={`${star} star${star > 1 ? 's' : ''}`}
+                onClick={() => setRating(star)}
+                onMouseEnter={() => setHoverRating(star)}
+                className="star-btn text-xl leading-none transition-transform duration-150 hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded"
+                style={{ animationDelay: `${600 + star * 120}ms` }}
+              >
+                <span className={star <= shownRating ? 'text-amber-400' : 'text-slate-300'}>★</span>
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 rounded-lg bg-white/70 px-3 py-2 text-xs italic text-slate-600">“Fresh tracks, good company, and a cocoa stop.”</p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-xl bg-white/[0.07] p-3 ring-1 ring-white/10">
+              <p className="text-2xl font-bold tabular-nums text-white">{Math.round(outings)}</p>
+              <p className="text-[11px] text-slate-400">Outings</p>
+            </div>
+            <div className="rounded-xl bg-white/[0.07] p-3 ring-1 ring-white/10">
+              <p className="text-2xl font-bold tabular-nums text-white">{distance.toFixed(1)}</p>
+              <p className="text-[11px] text-slate-400">km today</p>
+            </div>
+          </div>
+          <div className="rounded-xl bg-white/[0.07] p-3 ring-1 ring-white/10">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">This season</p>
+            <div className="grid grid-cols-7 gap-1.5" aria-hidden="true">
+              {Array.from({ length: 35 }, (_, day) => {
+                const active = seasonDays.includes(day)
+                return (
+                  <span
+                    key={day}
+                    className={`aspect-square rounded-[4px] ${active ? 'season-day bg-teal-400' : 'bg-white/10'}`}
+                    style={active ? { animationDelay: `${300 + seasonDays.indexOf(day) * 90}ms` } : undefined}
+                  />
+                )
+              })}
+            </div>
+          </div>
+          <div className="lock-badge flex items-center gap-2 rounded-xl bg-teal-400/10 p-3 text-xs text-teal-100 ring-1 ring-teal-300/20">
+            <LockIcon className="h-4 w-4 shrink-0" />
+            Saved on this device only
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
